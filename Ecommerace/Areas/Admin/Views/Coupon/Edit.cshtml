@@ -1,0 +1,10 @@
+﻿@model Ecommerace.Models.Coupon
+
+@{
+    ViewBag.url = "/Admin/Coupon/Edit?Id=" + @Model.Id;
+    ViewBag.BtnTxt = "Update";
+    ViewBag.HeaderText="Edit Coupon";
+}
+
+<partial name="_CouponFormPartial"  />
+          

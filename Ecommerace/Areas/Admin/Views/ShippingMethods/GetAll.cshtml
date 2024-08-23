@@ -1,0 +1,113 @@
+﻿@model Pagination<ShippingMethods>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>ShippingMethods</h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5  form-group pull-right top_search">
+            <div class="input-group">
+                <form asp-action="GetAll" asp-controller="ShippingMethods">
+                    <input type="text" class="form-control" Name="Search" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Go!</button>
+                </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row" style="display: block;">
+    <div class="col-md-12 col-sm-12  ">
+        <div class="x_panel">
+            <div class="x_title">
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="btn btn-round" href="/admin/ShippingMethods/Add_New">Create <i class="fa fa-plus-circle"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <th>
+                                    <input type="checkbox" id="check-all" class="flat">
+                                </th>
+                                <th class="column-title">Id </th>
+                                <th class="column-title">Name</th>
+                                <th class="column-title">Cost </th>
+                                <th class="column-title">EstimatedDeliveryTime </th>
+                                <th class="column-title">CreatedAt </th>
+                                <th class="column-title">UpdatedAt </th>
+                                <th class="column-title no-link last">
+                                    <span class="nobr">Action</span>
+                                </th>
+                                <th class="column-title no-link last">
+                                    <span class="nobr">Remove</span>
+                                </th>
+                                <th class="bulk-actions" colspan="7">
+                                    <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="even pointer">
+                                    <td class="a-center ">
+                                        <input type="checkbox" class="flat" name="table_records">
+                                    </td>
+                                    <td>@item.Id</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Cost</td>
+                                    <td>@item.EstimatedDeliveryTime</td>
+                                    <td>@item.CreatedAt</td>
+                                    <td>@item.UpdatedAt</td>
+                                    <td><a href="/admin/ShippingMethods/Details/@item.Id">View</a></td>
+                                    <form action="/admin/ShippingMethods/Delete/@item.Id" method="post">
+                                    <td>
+                                        <button class="btn btn-danger" type="submit" onclick="return confirm('are you sure to delete')">Delete</button>
+                                    </td>
+                                    </form>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    @if (Model.HasPreviousPage)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-action="GetAll" asp-route-pageIndex="@(Model.PageIndex - 1)" asp-route-pageSize="@Model.PageSize" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    }
+                    @for (var i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                            <a class="page-link" asp-action="GetAll" asp-route-pageIndex="@i" asp-route-pageSize="@Model.PageSize">@i</a>
+                        </li>
+                    }
+                    @if (Model.HasNextPage)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-action="GetAll" asp-route-pageIndex="@(Model.PageIndex + 1)" asp-route-pageSize="@Model.PageSize" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

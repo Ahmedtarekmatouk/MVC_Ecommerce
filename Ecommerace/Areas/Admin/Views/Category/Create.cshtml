@@ -1,0 +1,45 @@
+﻿@model CreateCategoryViewModel
+
+@{
+    ViewData["Title"] = "Create Category";
+}
+
+<h1 class="text-center">Create Category</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-area="Admin" asp-controller="Category" asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParentId" class="control-label">Choose Category</label>
+                <select asp-for="ParentId" class="form-control" asp-items="ViewBag.Categories">
+                    <option value="">-- Select Category --</option>
+                </select>
+                <span asp-validation-for="ParentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input type="file" asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <a class="btn btn-outline-primary mr-5" asp-area="Admin" asp-controller="Category" asp-action="index">Back to Categories</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    
+}

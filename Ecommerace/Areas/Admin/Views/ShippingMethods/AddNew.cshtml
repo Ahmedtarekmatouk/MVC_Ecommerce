@@ -1,0 +1,71 @@
+﻿@model ShippingMethods
+
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Create Shipping Method</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <form class="form-horizontal form-label-left" method="post" action="/admin/ShippingMethods/Create">
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3" asp-for="Name">Name</label>
+                    <div class="col-md-9 col-sm-9">
+                        <input class="form form-control" asp-for="Name" value="@Model?.Name" />
+                        <span asp-validation-for="Name"></span>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3" asp-for="Description">Description</label>
+                    <div class="col-md-9 col-sm-9">
+                        <input class="form form-control" asp-for="Description" value="@Model?.Description" />
+                        <span asp-validation-for="Description"></span>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3" asp-for="Cost">Cost</label>
+                    <div class="col-md-9 col-sm-9">
+                        <input class="form form-control" asp-for="Cost" value="@Model?.Cost" />
+                        <span asp-validation-for="Cost"></span>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3" asp-for="CreatedAt">CreatedAt</label>
+                    <div class="col-md-9 col-sm-9">
+                        <input class="form form-control" asp-for="CreatedAt" value="@Model?.CreatedAt" />
+                        <span asp-validation-for="CreatedAt"></span>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3" asp-for="UpdatedAt">UpdatedAt</label>
+                    <div class="col-md-9 col-sm-9">
+                        <input class="form form-control" asp-for="UpdatedAt" value="@Model?.UpdatedAt" />
+                        <span asp-validation-for="UpdatedAt"></span>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3" asp-for="EstimatedDeliveryTime">Estimated Delivery Time</label>
+                    <div class="col-md-9 col-sm-9">
+                        <input class="form form-control" asp-for="EstimatedDeliveryTime" value="@Model?.EstimatedDeliveryTime" />
+                        <span asp-validation-for="EstimatedDeliveryTime"></span>
+                    </div>
+                </div>
+                <br />
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-9 col-sm-9 offset-md-3">
+                        <a class="btn btn-primary" href="/Admin/ShippingMethods/GetAll" type="button">Cancel</a>
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                        <input type="submit" class="btn btn-success" value="Create" />
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

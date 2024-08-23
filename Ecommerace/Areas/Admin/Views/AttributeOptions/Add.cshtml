@@ -1,0 +1,11 @@
+﻿@model Ecommerace.Models.AttributesOptions
+
+@{
+	ViewData["Title"] = "Add";
+	ViewBag.BtnTxt="Add";
+	ViewBag.HeaderText = "Add New Option";
+	ViewBag.url ="/Admin/AttributeOptions/Add";
+	ViewBag.AttributesList = ViewBag.AttributesList;
+}
+
+<partial name="_AttributeOptionsFormPartialView"/>

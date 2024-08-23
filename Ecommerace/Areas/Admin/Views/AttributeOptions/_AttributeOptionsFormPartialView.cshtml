@@ -1,0 +1,67 @@
+﻿@model AttributesOptions
+@{
+ 
+}
+<div class="col-md-12 ">
+<div class="x_panel">
+	<div class="x_title">
+		<h2>@ViewBag.HeaderText</h2>
+		<ul class="nav navbar-right panel_toolbox">
+			<li>
+				<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="#">Settings 1</a>
+					<a class="dropdown-item" href="#">Settings 2</a>
+				</div>
+			</li>
+			<li>
+				<a class="close-link"><i class="fa fa-close"></i></a>
+			</li>
+		</ul>
+		<div class="clearfix"></div>
+	</div>
+	<div class="x_content">
+		<br />
+			<form method="post" action=@ViewBag.url class="form-horizontal form-label-left">
+
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			<div class="form-group row ">
+				<label asp-for="AttributeId" class="control-label col-md-3 col-sm-3 "></label>
+				<div class="col-md-9 col-sm-9 ">
+						@* <input asp-for="DiscountType" class="form-control"> *@
+						<select asp-for="AttributeId" class="form-control">
+							<option disabled selected>-- Select Attribute Name --</option>
+							@foreach(var item in ViewBag.AttributesList)
+							{
+									<option value=@item.Id>@item.Name</option>
+							}
+					</select>
+					<span asp-validation-for="AttributeId" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="form-group row ">
+				<label asp-for="Value" class="control-label col-md-3 col-sm-3 "></label>
+				<div class="col-md-9 col-sm-9 ">
+					<input asp-for="Value" class="form-control" />
+					<span asp-validation-for="Value" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="ln_solid"></div>
+			<div class="form-group">
+				<div class="col-md-9 col-sm-9  offset-md-3">
+						<button class="btn btn-primary" action="/Admin/AttributeOptions/Index">Cancel</button>
+					<button type="reset" class="btn btn-primary">Reset</button>
+						<button type="submit" class="btn btn-success" action="/Admin/AttributeOptions/Index">@ViewBag.BtnTxt</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+

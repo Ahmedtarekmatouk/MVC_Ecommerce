@@ -1,0 +1,61 @@
+﻿@model Ecommerace.ViewModels.RegisterViewModel
+@{
+
+    Layout = "_Layout";
+    ViewData["Title"] = "Register";
+}
+
+@section Style {
+    <style>
+        form {
+            width: 50%;
+            margin: auto;
+        }
+    </style>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center position-relative text-uppercase mx-xl-5 mb-4">Sign Up</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                <form asp-action="Register" asp-area="" asp-controller="account">
+                   @*  <div asp-validation-summary="All" class="text-danger mb-4"></div> *@
+                    <div class="form-group">
+                        <label class="form-label" asp-for="UserName"><i class="fas fa-user fa-lg me-3 fa-fw"></i> Username</label>
+                        <input asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" asp-for="Email"><i class="fas fa-envelope fa-lg me-3 fa-fw"></i> Email</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" asp-for="Password"> <i class="fas fa-lock fa-lg me-3 fa-fw"></i> Password</label>
+                        <input asp-for="Password" type="password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" asp-for="ConfirmPassword"> <i class="fas fa-key fa-lg me-3 fa-fw"></i> Confirm Password</label>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        <input type="submit" value="Register" class="btn btn-primary btn-lg" />
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

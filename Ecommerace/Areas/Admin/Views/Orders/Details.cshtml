@@ -1,0 +1,39 @@
+﻿@model Ecommerace.Models.Order
+
+@{
+    ViewBag.Title = "Order Details";
+}
+
+<h2 class="text-center">Order Details</h2>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form-container">
+                <dl class="row">
+                    <dt class="col-sm-3">Client ID:</dt>
+@*                     <dd class="col-sm-9">@Model.ClientId</dd>
+ *@
+                    <dt class="col-sm-3">Total Price:</dt>
+                    <dd class="col-sm-9">@Model.TotalPrice</dd>
+
+                    <dt class="col-sm-3">Status:</dt>
+                    <dd class="col-sm-9">@Model.Status</dd>
+
+                    <dt class="col-sm-3">Shipping Address:</dt>
+                    <dd class="col-sm-9">@Model.ShippingAddress</dd>
+
+                    <dt class="col-sm-3">Created At:</dt>
+                    <dd class="col-sm-9">@Model.CreatedAt?.ToString("g")</dd>
+
+                    <dt class="col-sm-3">Updated At:</dt>
+                    <dd class="col-sm-9">@Model.UpdatedAt?.ToString("g")</dd>
+                </dl>
+
+                <div class="text-center mt-3">
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

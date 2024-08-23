@@ -1,0 +1,53 @@
+﻿@model Ecommerace.ViewModels.ResetPasswordViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Security";
+}
+
+
+<div class="container-xl px-4 mt-4">
+    <!-- Account page navigation-->
+    <nav class="nav nav-borders">
+        <a class="nav-link active ms-0" href="/Profile/index">Profile</a>
+        <a class="nav-link" href="/Profile/ResetPassword">Security</a>
+        <a class="nav-link" href="/Profile/MyOrder">My Orders</a>
+    </nav>
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Change password card-->
+            <div class="card mb-4">
+                <div class="card-header">Change Password</div>
+                <div class="card-body">
+                    <form asp-action="ResetPassword" asp-controller="Profile">
+                        <!-- Form Group (current password)-->
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="CurrentPassword" class="control-label"></label>
+                            <input asp-for="CurrentPassword" class="form-control" />
+                            <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+                        </div>
+                        <!-- Form Group (new password)-->
+                        <div class="form-group">
+                            <label asp-for="NewPassword" class="control-label"></label>
+                            <input asp-for="NewPassword" class="form-control" />
+                            <span asp-validation-for="NewPassword" class="text-danger"></span>
+                        </div>
+                        <!-- Form Group (confirm password)-->
+                        <div class="form-group">
+                            <label asp-for="ConfirmPassword" class="control-label"></label>
+                            <input asp-for="ConfirmPassword" class="form-control" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

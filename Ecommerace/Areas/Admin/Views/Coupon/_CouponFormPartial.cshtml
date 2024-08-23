@@ -1,0 +1,240 @@
+﻿@model Ecommerace.Models.Coupon
+
+@{
+    
+}
+<div class="col-md-12 ">
+<div class="x_panel">
+	<div class="x_title">
+		<h2>@ViewBag.HeaderText</h2>
+		<ul class="nav navbar-right panel_toolbox">
+			<li>
+				<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="#">Settings 1</a>
+					<a class="dropdown-item" href="#">Settings 2</a>
+				</div>
+			</li>
+			<li>
+				<a class="close-link"><i class="fa fa-close"></i></a>
+			</li>
+		</ul>
+		<div class="clearfix"></div>
+	</div>
+	<div class="x_content">
+		<br />
+			<form method="post" action=@ViewBag.url class="form-horizontal form-label-left">
+
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			<div class="form-group row ">
+				<label asp-for="Code" class="control-label col-md-3 col-sm-3 "></label>
+				<div class="col-md-9 col-sm-9 ">
+					<input asp-for="Code" class="form-control" />
+					<span asp-validation-for="Code" class="text-danger"></span>
+				</div>
+			</div>
+
+			<hr />
+
+			<div class="form-group row ">
+				<label asp-for="DiscountType" class="control-label col-md-3 col-sm-3 "></label>
+				<div class="col-md-9 col-sm-9 ">
+					@* <input asp-for="DiscountType" class="form-control"> *@
+						<select asp-for="DiscountType" class="form-control">
+						<option value="1">Percentage</option>
+						<option value="2">Fixed Value</option>
+					</select>
+					<span asp-validation-for="DiscountType" class="text-danger"></span>
+				</div>
+			</div>
+
+
+
+			<div class="form-group row ">
+				<label asp-for="DiscountValue" class="control-label col-md-3 col-sm-3 "></label>
+				<div class="col-md-9 col-sm-9 ">
+					<input asp-for="DiscountValue" class="form-control" />
+					<span asp-validation-for="DiscountValue" class="text-danger"></span>
+				</div>
+			</div>
+
+			<hr />
+
+			<div class="form-group row">
+				<label class="col-md-3 col-sm-3  control-label">
+					Coupon Type
+				</label>
+				<div class="col-md-9 col-sm-9 ">
+					<div class="radio">
+						<label>
+								<input type="radio" value="1" id="GeneralCoupon" name="CouponType" @((Model?.CouponType == 1 || Model?.CouponType==null) ? "checked" : "")> General Coupon
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" value="2" id="SpecificProductCoupon" name="CouponType" @(Model?.CouponType == 2 ? "checked" : "")> For Specific Product
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row ">
+				<label asp-for="ProductId" class="control-label col-md-3 col-sm-3 "></label>
+				<div class="col-md-9 col-sm-9 ">
+					<input asp-for="ProductId" class="form-control" disabled />
+					<span asp-validation-for="ProductId" class="text-danger"></span>
+				</div>
+			</div>
+
+			<hr />
+
+			<div class="form-group row">
+				<label class="col-md-3 col-sm-3  control-label">
+					Coupon Expiration
+				</label>
+				<div class="col-md-9 col-sm-9 ">
+					<div class="radio">
+						<label>
+								<input type="radio" value="1" id="DateCoupon" name="CouponExpiration" @((Model?.CouponExpiration == 1 || Model?.CouponExpiration == null) ? "checked" : "")> By Expiration Date
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+								<input type="radio" value="2" id="LimitCoupon" name="CouponExpiration" @(Model?.CouponExpiration ==2 ? "checked" : "")> By using Limit
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label class="col-md-3 col-sm-3  control-label">
+
+				</label>
+				<div class="col-md-9 col-sm-9 " id="CouponByDate">
+					<div class="form-group">
+						<label asp-for="StartDate" class="control-label"></label>
+						<input asp-for="StartDate" class="form-control" />
+						<span asp-validation-for="StartDate" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="EndDate" class="control-label"></label>
+						<input asp-for="EndDate" class="form-control" />
+						<span asp-validation-for="EndDate" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label class="col-md-3 col-sm-3  control-label">
+
+				</label>
+				<div class="col-md-9 col-sm-9" id="CouponByUsage">
+					<div class="form-group">
+						<label asp-for="UsageLimit" class="control-label"></label>
+						<input asp-for="UsageLimit" class="form-control" disabled />
+						<span asp-validation-for="UsageLimit" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="UsedCount" class="control-label"></label>
+						<input asp-for="UsedCount" class="form-control" disabled />
+						<span asp-validation-for="UsedCount" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+
+			@* <hr /> *@
+
+			@* <div class="form-group row ">
+				<label asp-for="CreatedAt" class="control-label col-md-3 col-sm-3 "></label>
+				<div class="col-md-9 col-sm-9 ">
+					<input asp-for="CreatedAt" class="form-control" />
+					<span asp-validation-for="CreatedAt" class="text-danger"></span>
+				</div>
+			</div>
+
+			<hr />
+
+			<div class="form-group row ">
+				<label asp-for="UpdatedAt" class="control-label col-md-3 col-sm-3 "></label>
+				<div class="col-md-9 col-sm-9 ">
+					<input asp-for="UpdatedAt" class="form-control" />
+					<span asp-validation-for="UpdatedAt" class="text-danger"></span>
+				</div>
+			</div>
+
+ *@
+
+			<div class="ln_solid"></div>
+			<div class="form-group">
+				<div class="col-md-9 col-sm-9  offset-md-3">
+						<button class="btn btn-primary" action="/Admin/Coupon/Index">Cancel</button>
+					<button type="reset" class="btn btn-primary">Reset</button>
+						<button type="submit" class="btn btn-success">@ViewBag.BtnTxt</button>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+
+
+		const productIdInput = document.getElementById('ProductId');
+
+		const GeneralCouponRadio = document.getElementById('GeneralCoupon');
+		const specificProductCouponRadio = document.getElementById('SpecificProductCoupon');
+
+		GeneralCouponRadio.addEventListener('click', function () {
+			productIdInput.disabled = true;
+		});
+
+		specificProductCouponRadio.addEventListener('click', function () {
+			productIdInput.disabled = false;
+		});
+
+
+		// Initial state setting
+		if (specificProductCouponRadio.checked) {
+			productIdInput.disabled = false;
+		}
+
+		const DateCouponRadio = document.getElementById('DateCoupon');
+		const LimitCouponRadio = document.getElementById('LimitCoupon');
+		const StartDateInput = document.getElementById('StartDate');
+		const EndDateInput = document.getElementById('EndDate');
+		const UsageLimitInput = document.getElementById('UsageLimit');
+		const UsedCountInput = document.getElementById('UsedCount');
+
+		DateCouponRadio.addEventListener('click', function () {
+			StartDateInput.disabled = false;
+			EndDateInput.disabled = false;
+			UsageLimitInput.disabled = true;
+			UsedCountInput.disabled = true;
+
+		});
+
+		LimitCouponRadio.addEventListener('click', function () {
+			StartDateInput.disabled = true;
+			EndDateInput.disabled = true;
+			UsageLimitInput.disabled = false;
+			UsedCountInput.disabled = false;
+		});
+
+		// Initial state setting
+		if (LimitCouponRadio.checked) {
+			StartDateInput.disabled = true;
+			EndDateInput.disabled = true;
+			UsageLimitInput.disabled = false;
+			UsedCountInput.disabled = false;
+		}
+
+	});
+
+</script>

@@ -1,0 +1,148 @@
+﻿@model List<Coupon>
+@{
+    ViewData["Title"] = "Index";
+    // Layout="_DashboardLayout";
+    ViewBag.area = "Admin";
+    ViewBag.controller = "Coupon";
+}
+<div class="page-title">
+
+    <div class="title_left">
+        <h3>All Coupons</h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <form asp-area="Admin" asp-controller="Coupon" asp-action="Index" class="me-4">
+            <div class="input-group">
+                    <input type="text" class="form-control" name="searchText" placeholder="Search By Code">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Go!</button>
+                </span>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row" style="display: block;">
+
+
+    <div class="col-md-12 col-sm-12  ">
+        <div class="x_panel">
+            <div class="x_title">
+              
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="btn btn-round" href="/Admin/Coupon/Add">Add New Coupon <i class="fa fa-plus-circle"></i></a>
+                    </li>
+
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <th class="column-title">ID </th>
+                                <th class="column-title">Code </th>
+                                <th class="column-title">Product Id </th>
+                                <th class="column-title">Discount Type </th>
+                                <th class="column-title">Discount Value </th>
+                                <th class="column-title">Start Date </th>
+                                <th class="column-title">End Date </th>
+                                <th class="column-title">Usage Limit</th>
+                                <th class="column-title">Used Count</th>
+                                <th class="column-title">Created At</th>
+                                <th class="column-title">Updated At</th>
+                                <th class="column-title no-link last">
+                                    <span class="nobr">Actions</span>
+                                </th>
+                                <th class="bulk-actions" colspan="7">
+                                    <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="even pointer">
+                                    <th class=" ">@item.Id </th>
+                                    <th class=" ">@item.Code </th>
+                                    <th class=" ">@(item.ProductId.HasValue ? item.ProductId:" - ") </th>
+                                    <th class=" ">@item.DiscountType </th>
+                                    <th class=" ">@item.DiscountValue </th>
+                                    <th class=" ">@(item.StartDate.HasValue ? item.StartDate?.ToString("dd/MM/yyyy") : " - ")</th>
+                                    <th class=" ">@(item.EndDate.HasValue ? item.EndDate?.ToString("dd/MM/yyyy") : " - ") </th>
+                                    <th class=" ">@(item.UsageLimit.HasValue ? item.UsageLimit : " - ")  </th>
+                                    <th class=" ">@(item.UsedCount.HasValue ? item.UsedCount : " - ") </th>
+                                    <th class=" ">@item.CreatedAt </th>
+                                    <th class=" ">@(item.UpdatedAt.HasValue ? @item.UpdatedAt : " - ") </th>
+                                    <td class=" last">
+                                        <a href="/Admin/Coupon/Edit?Id=@item.Id">Edit</a>
+
+                                        <a href="#" onclick="confirmDelete(@item.Id)">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+            <div class="clearfix"></div>
+            @*< nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav> *@
+
+            <partial name="_PagerPartial" model="@ViewBag.Pager" />
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function confirmDelete(id) {
+        event.preventDefault();
+        if (confirm("Are You Sure You Want To Delete This Coupon ? ") == true) {
+            $.ajax({
+                url: "/Admin/Coupon/Delete",
+                type: "POST",
+                data: { Id: id },
+                success: function (result) {
+                    alert("Coupon deleted successfully");
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    alert("Failed to delete Coupon. Please try again");
+                }
+            });
+        }
+
+    }
+</script>
+
+

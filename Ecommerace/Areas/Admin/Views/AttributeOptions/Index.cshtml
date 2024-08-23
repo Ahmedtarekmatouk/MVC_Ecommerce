@@ -1,0 +1,102 @@
+﻿@model Dictionary<string, List<AttributesOptions>>
+@{
+    ViewData["Title"] = "Index";
+    // ViewBag.area = "Admin";
+    // ViewBag.controller = "AttributeOptions";
+    // ViewBag.action = "/Admin/AttributeOptions/Index";
+}
+<div class="page-title">
+    <div class="title_left">
+        <h3>Attributes Options</h3>
+    </div>
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+            <form asp-area="Admin" asp-controller="Attributes" asp-action="Index" class="me-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="searchText" placeholder="Search By Name">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Go!</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<div class="row" style="display: block;">
+    <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="btn btn-round" href="/Admin/AttributeOptions/Add">Add New Attribute Option <i class="fa fa-plus-circle"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <th class="column-title" style="width:15% ;">Attribute Name</th>
+                                <th class="column-title">Attribute Options Values</th>
+                                <th class="column-title no-link last"><span class="nobr">Actions</span></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="even pointer">
+                                    <td class="text-center " style="vertical-align: middle; background-color:white" rowspan="@item.Value.Count">@item.Key</td>
+                                    <td class=" ">@item.Value.FirstOrDefault()?.Value</td>
+                                    <td class=" last">
+                                        <a href="/Admin/AttributeOptions/Edit?Id=@item.Value.FirstOrDefault()?.Id">Edit</a>
+                                        <a href="#" onclick="confirmDelete(@item.Value.FirstOrDefault()?.Id)">Delete</a>
+                                    </td>
+                                </tr>
+
+                                @for (int i = 1; i < item.Value.Count; i++)
+                                {
+                                    <tr class="even pointer">
+                                        <td class=" ">@item.Value[i].Value</td>
+                                        <td class=" last">
+                                            <a href="/Admin/AttributeOptions/Edit?Id=@item.Value[i].Id">Edit</a>
+                                            <a href="#" onclick="confirmDelete(@item.Value[i].Id)">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+           @*  <partial name="_PagerPartial" model="@ViewBag.Pager" /> *@
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmDelete(id) {
+        event.preventDefault();
+        if (confirm("Are You Sure You Want To Delete This Attribute Option?") == true) {
+            $.ajax({
+                url: "/Admin/AttributeOptions/Delete",
+                type: "POST",
+                data: { Id: id },
+                success: function (result) {
+                    alert("Attribute option deleted successfully");
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    alert("Failed to delete attribute Option. Please try again.");
+                }
+            });
+        }
+    }
+</script>

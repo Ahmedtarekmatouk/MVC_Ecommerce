@@ -1,0 +1,12 @@
+﻿@model AttributesOptions
+
+@{
+      ViewData["Title"] = "Edit";
+    ViewBag.url = "/Admin/AttributeOptions/Edit?id=" + @Model.Id;
+    ViewBag.BtnTxt = "Update";
+    ViewBag.HeaderText="Edit Option";
+	ViewBag.AttributesList = ViewBag.AttributesList;
+}
+
+<partial name="_AttributeOptionsFormPartialView"/>
+          

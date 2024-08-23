@@ -1,0 +1,56 @@
+﻿ @model Ecommerace.ViewModels.Store.LoginViewModel
+
+@{
+
+    Layout = "_AccountLayout";
+    ViewData["Title"] = "Login";
+}
+<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign In</p>
+<!-- Login Tab Content -->
+<div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+    <form asp-action="Login" asp-area="Store" asp-controller="Account">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+        <!-- Email input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input asp-for="UserName" class="form-control" />
+            <label class="form-label" asp-for="UserName">UserName</label>
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+
+        <!-- Password input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input asp-for="Password" type="password" class="form-control" />
+            <label class="form-label" asp-for="Password">Password</label>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <!-- 2 column grid layout -->
+        <div class="row mb-4">
+            <div class="col-md-6 d-flex justify-content-center">
+                <!-- Checkbox -->
+                <div class="form-check mb-3 mb-md-0">
+                    <input class="form-check-input" type="checkbox" asp-for="RememberMe" id="RememberMe" />
+                    <label class="form-check-label" asp-for="RememberMe">Remember Me</label>
+                </div>
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-center">
+                <!-- Simple link -->
+                <a href="#">Forgot password?</a>
+            </div>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Sign in</button>
+
+        <!-- Register buttons -->
+        <div class="text-center">
+            <p>Not a member? <a asp-action="Register" asp-area="Store" asp-controller="Account">Register</a></p>
+        </div>
+    </form>
+</div>
+
+
+
+
+

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Ecommerace.Models.Order>
+
+@{
+    ViewBag.Title = "Orders List";
+}
+
+<h2>Orders List</h2>
+
+<style>
+    .table-container {
+        max-width: 80%;
+        margin: auto;
+    }
+
+        .table-container .table {
+            width: 100%;
+        }
+
+        .table-container th, .table-container td {
+            padding: 12px 15px;
+        }
+
+        .table-container th {
+            background-color: #f2f2f2;
+        }
+</style>
+
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Client ID</th>
+                <th>Total Price</th>
+                <th>Status</th>
+                <th>Shipping Address</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                  @*   <td>@order.ClientId</td> *@
+                    <td>@order.TotalPrice.ToString("C")</td>
+                    <td>@order.Status</td>
+                    <td>@order.ShippingAddress</td>
+                    <td>@order.CreatedAt?.ToString("g")</td>
+                    <td>@order.UpdatedAt?.ToString("g")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@order.Id">Details</a> |
+                        <a asp-action="Edit" asp-route-id="@order.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@order.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @* <!-- asp-route-id=Model.id -> *@
+    <div> 
+        <a asp-area="Admin" asp-controller="Orders" asp-action="Create"   class="btn btn-primary">Create New Order</a>
+    </div>
+</div>

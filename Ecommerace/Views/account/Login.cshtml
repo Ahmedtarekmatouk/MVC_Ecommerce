@@ -1,0 +1,71 @@
+﻿@model Ecommerace.ViewModels.LoginViewModel
+@{
+
+    Layout = "_Layout";
+    ViewData["Title"] = "Login";
+}
+
+@section Style {
+    <style>
+        form {
+            width: 50%;
+            margin: auto;
+        }
+    </style>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center position-relative text-uppercase mx-xl-5 mb-4">Sign In</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                <form asp-action="login" asp-area="" asp-controller="account">
+
+                    <!-- Email input -->
+                    <div class="control-group mb-4">
+                        <label class="form-label" asp-for="UserName">Email or username</label>
+                        <input asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Password input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label" asp-for="Password">Password</label>
+                        <input asp-for="Password" type="password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <!-- 2 column grid layout -->
+                    <div class="row mb-4">
+                        <div class="col-md-6 d-flex justify-content-start">
+                            <!-- Checkbox -->
+                            <div class="form-check mb-3 mb-md-0">
+                                <input class="form-check-input" type="checkbox" asp-for="RememberMe" id="loginCheck" />
+                                <label class="form-check-label" for="loginCheck">@Html.DisplayNameFor(model => model.RememberMe)</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 d-flex justify-content-end">
+                            <!-- Simple link -->
+                            <a href="#!">Forgot password?</a>
+                        </div>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Sign in</button>
+
+                    <!-- Register buttons -->
+                    <div class="text-center">
+                        <p>Not a member? <a href="/account/Register">Register</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

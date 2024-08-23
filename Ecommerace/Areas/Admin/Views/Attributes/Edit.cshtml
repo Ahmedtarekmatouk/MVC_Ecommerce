@@ -1,0 +1,10 @@
+﻿@model Ecommerace.Models.ProductAttributes
+
+@{
+    ViewBag.url = "/Admin/Attributes/Edit?Id=" + @Model.Id;
+    ViewBag.BtnTxt = "Update";
+    ViewBag.HeaderText="Edit Attribute";
+}
+
+<partial name="_AttributesFormPartial"  />
+          
